@@ -2,9 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CategoriesService, Product, ProductsService, SweetAlertService } from '@util';
-import { Subject, takeUntil } from 'rxjs';
-
+import { CategoriesService, Category, ProductsService, SweetAlertService } from '@util';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
@@ -12,12 +10,14 @@ import { Subject, takeUntil } from 'rxjs';
 })
 export class ProductAdminFormComponent implements OnInit {
   editmode = false;
+  copyButton = ''
   form: any = FormGroup;
   isSubmitted = false;
-  catagories: any = [];
+  catagories: Category[] = [];
   imageDisplay: any;
+  header = ''
   currentProductId: string =''
-  endsubs$: Subject<any> = new Subject();
+
   
   constructor(
     private formBuilder: FormBuilder,
@@ -32,9 +32,6 @@ export class ProductAdminFormComponent implements OnInit {
     this._initForm();
     this._getCategories();
     this._checkEditMode();
-  }
-  ngOnDestroy() {
-    this.endsubs$.complete();
   }
 
 //Functions
@@ -70,21 +67,18 @@ export class ProductAdminFormComponent implements OnInit {
       this._addProduct(productFormData);
     }
   }
-
-
 //Privates Functions
  private _getCategories(){
   this.categoryService
   .getCategories()
-  .pipe(takeUntil(this.endsubs$))
   .subscribe((categories) => {
     this.catagories = categories;
+    console.log(categories)
   });
  }
- private _addProduct(productData: FormData) {
+ private _addProduct(productFormData: FormData) {
   this.productService
-    .createProduct(productData)
-    .pipe(takeUntil(this.endsubs$))
+    .createProduct(productFormData)
     .subscribe({
       next: () => this.alertService.successSwal('Produto Adicionado', 'Sucesso'),
       error: () => this.alertService.errorSwal('Tente novamente mais tarde', 'Error'),
@@ -94,7 +88,6 @@ export class ProductAdminFormComponent implements OnInit {
 private _updateProduct(productFormData: FormData) {
   this.productService
     .updateProduct(productFormData, this.currentProductId)
-    .pipe(takeUntil(this.endsubs$))
     .subscribe({
       next: () => this.alertService.successSwal('Produto Atualizado', 'Sucesso'),
       error: () => this.alertService.errorSwal('Tente novamente mais tarde', 'Error'),
@@ -102,16 +95,17 @@ private _updateProduct(productFormData: FormData) {
     })
 }
 private _checkEditMode() {
-  this.route.params.pipe(takeUntil(this.endsubs$)).subscribe((params) => {
+  this.route.params.subscribe((params) => {
     if (params['id']) {
       this.editmode = true;
+      this.header = 'Edite o Produto'
+      this.copyButton = 'Atualizar'
       this.currentProductId = params['id'];
       this.productService
         .getProduct(params['id'])
-        .pipe(takeUntil(this.endsubs$))
         .subscribe((product) => {
           this.productForm.name.setValue(product.name);
-          this.productForm.category.setValue(product.category?.id);
+          this.productForm.category.setValue(product.category);
           this.productForm.price.setValue(product.price);
           this.productForm.description.setValue(product.description);
           this.productForm.countInStock.setValue(product.countInStock);
@@ -121,6 +115,9 @@ private _checkEditMode() {
           this.productForm.image.setValidators([]);
           this.productForm.image.updateValueAndValidity();
         });
+    } else {
+      this.header = 'Adicione um Produto'
+      this.copyButton = "Adicionar"
     }
   });
 }
@@ -131,7 +128,8 @@ private _initForm(){
     description: ['', Validators.required],
     promo: ['', Validators.required],
     image: ['', Validators.required],
-    images: ['', Validators.required],
+    category: ['', Validators.required],
+    images: [''],
     countInStock: [''],
     status: [false]
   });

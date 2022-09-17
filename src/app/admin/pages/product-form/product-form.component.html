@@ -1,1 +1,84 @@
-<p>product-form works!</p>
+<div class="mx-2 md:mx-auto bg-white  my-10 rounded ">
+    <div class="grid grid-cols-1 md:grid-cols-2 px-5">
+        <div class=" border-b my-8 px-0 md:px-5 md:border-b-transparent md:border-r border-gray-300">
+            <h5 class="text-xl font-bold py-3">Informações Principais</h5>
+            <form [formGroup]="form" class="row g-3 md:mx-5"> <!--Grid do bootstrap-->
+              <div class="col-12">
+                <div class="form-check form-switch ">
+                    <input formControlName="status" class="form-check-input h4" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                    <label class="form-check-label text-start h4" for="flexSwitchCheckDefault">Status</label>
+                </div>
+              </div>
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Nome do Produto</label>
+                  <input formControlName="name" type="text" class="form-control bg-gray-100" id="name" placeholder="Digite o nome do produto">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label" for="inputState">Categoria</label>
+                    <select 
+                    required
+                    formControlName="category"
+                    id="categoryInput" 
+                    class="form-control">
+                    <option selected>Selecione a Categoria</option>
+                    <option *ngFor="let category of catagories" [value]="category._id" >{{category.name}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                  <label for="inputPassword4" class="form-label">Estoque</label>
+                  <input formControlName="countInStock" type="number" class="form-control bg-gray-100" id="stock" placeholder="Quantidade">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputAddress" class="form-label">Preço</label>
+                  <input formControlName="price" type="number" class="form-control bg-gray-100" id="price" placeholder="Ex: 10.00">
+                </div>
+                <div class="col-md-4">
+                  <label for="inputAddress2" class="form-label">Preço Promocional</label>
+                  <input formControlName="promo" type="number" class="form-control bg-gray-100" id="promoPrice" placeholder="Ex: 5.99">
+                </div>
+
+                <div class="col-12 ">
+                  <label for="inputAddress2" class="form-label my-10">Descrição do produto</label>
+                  <textarea class="bg-gray-100 border border-black w-full p-2" formControlName="description" placeholder="Digite as descrições" name="description" id="description" cols="30" rows="10"></textarea>
+                </div>
+              </form>
+        </div>
+
+        <!--Imagens-->
+        <div class="md:ml-10">
+            <h5 class="text-xl font-bold py-5">Informações Principais</h5>
+          <form [formGroup]="form">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto">
+              <div>
+                <div class="pb-4">Principal</div>
+                <div class="mb-3">
+                  <input (change)="onImageUpload($event)" 
+                  class="form-control" 
+                  type="file" 
+                  accept="image/*"
+                  id="formFile">
+                </div>
+                <div><img class="mt-2" [src]="imageDisplay" width="200"></div>
+                
+              </div>
+              <!-- ... -->
+              <!-- <div>
+                <div for="testando" class="pb-4">Alternativa</div>
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Default file input example</label>
+                  <input (change)="onImageUpload($event)" class="form-control" type="file" accept="image/*" id="formFile">
+                  <div class="p-col-2 p-mt-2 p-pl-0">
+                    <img style="width: 100%" [src]="imageDisplay" alt="" />
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </form>
+        </div>
+      </div>
+</div>
+
+<div class="flex justify-end bg-gray-100 p-4 rounded my-10">
+  <button class="bg-white text-gray-600 py-2 px-5 rounded ml-3 text-center" routerLink="formulario" (click)="onCancle()">Cancelar</button>
+  <button class="bg-blue-900 text-white py-2 px-5 rounded ml-3 text-center" (click)="onSubmit()">{{copyButton}}</button>
+</div>

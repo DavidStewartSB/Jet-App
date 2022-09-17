@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product, ProductsService, SweetAlertService } from '@util';
+import { Category, Product, ProductsService, SweetAlertService } from '@util';
 
 @Component({
   selector: 'app-product-list',
@@ -9,6 +9,7 @@ import { Product, ProductsService, SweetAlertService } from '@util';
 })
 export class ProductAdminListComponent implements OnInit {
   products: any = []
+  categories: Category[] = []
   constructor(
     private router: Router,
     private productService: ProductsService,

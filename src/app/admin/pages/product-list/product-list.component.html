@@ -19,8 +19,8 @@
             <tbody class="align-middle">
               <tr *ngFor="let product of products" class="text-center">
                 <th scope="row" class="text-start  py-4 px-4">{{product.name}}</th>
-                <td>{{product.price}}</td>
-                <td>{{product.promo}}</td>
+                <td>{{product.price | currency: 'BRL'}}</td>
+                <td>{{product.promo | currency: 'BRL'}}</td>
                 <td>{{product.countInStock}}</td>
                 <td>
                   <button>
@@ -37,9 +37,17 @@
                         <a class="dropdown-item hover:text-yellow-500" (click)="updateProduct(product._id)">Atualizar <i class="fa-solid fa-pen-to-square "></i></a>
                       </li>
                       <li>
-                        <a class="dropdown-item hover:text-red-500" (confirm)="deleteProduct(product._id)" >Deletar <i class="fa-solid fa-trash-can "></i></a>
-                       
+                        <a [swal]="deleteSwal" class="dropdown-item hover:text-red-500" (confirm)="deleteProduct(product._id)" >Deletar <i class="fa-solid fa-trash-can "></i></a>
                       </li>
+                      <swal
+                          #deleteSwal
+                          title="Deseja deletar o produto: {{product.name}}?"
+                          text="Esta ação não tem reversão"
+                          icon="warning"
+                          [showCancelButton]="true"
+                          [focusCancel]="true"
+                          (confirm)="deleteProduct(product._id)">
+                          </swal>
                     </ul>
                   </div>
                 </td>

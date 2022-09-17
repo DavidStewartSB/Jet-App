@@ -21,11 +21,11 @@ export class ProductsService {
     getProductCount(): Observable<number> {
         return this.http.get<number>(`${this.apiURLProducts}/get/count`)
     }
-    createProduct(productData: FormData): Observable<Product>{
-        return this.http.post<Product>(`${this.apiURLProducts}`, productData)
+    createProduct(productFormData: FormData): Observable<Product>{
+        return this.http.post<Product>(`${this.apiURLProducts}`, productFormData)
     }
-    updateProduct(productData: FormData, productId: string): Observable<Product>{
-        return this.http.put<Product>(`${this.apiURLProducts}/${productId}`, productData)
+    updateProduct(productFormData: FormData, productId: string): Observable<Product>{
+        return this.http.put<Product>(`${this.apiURLProducts}/${productId}`, productFormData)
     }
     deleteProduct(product: Product): Observable<Product> {
         return this.http.delete<Product>(`${this.apiURLProducts}/${product}`)

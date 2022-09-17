@@ -35,7 +35,7 @@ const SHARED_COMPONENTS = [ProductItemComponent,ProductPageComponent, FeaturedPr
     HttpClientModule,
     SweetAlert2Module.forRoot()
   ],
-  providers: [CategoriesService, ProductsService],
+  providers: [CategoriesService, ProductsService, SweetAlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
