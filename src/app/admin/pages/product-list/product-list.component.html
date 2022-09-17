@@ -1,1 +1,55 @@
-<p>product-list works!</p>
+<div class="container mx-auto">
+    <div class="bg-white p-4 rounded my-10">
+        <input type="search" placeholder="Digite o nome do produto" class="rounded py-2 px-3 bg-gray-100 w-96">
+        <button class="bg-blue-500 text-white py-2 px-5 rounded ml-3 text-center">Buscar</button>
+    </div>
+
+    <div class="bg-white rounded w-full">
+        <table class="table">
+            <thead class="align-middle">
+              <tr class="text-center">
+                <th scope="col" class="text-start py-4 px-4">Nome do Produto</th>
+                <th scope="col">Preço</th>
+                <th scope="col">Preço Promoção</th>
+                <th scope="col">Estoque</th>
+                <th scope="col">Visível</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody class="align-middle">
+              <tr *ngFor="let product of products" class="text-center">
+                <th scope="row" class="text-start  py-4 px-4">{{product.name}}</th>
+                <td>{{product.price}}</td>
+                <td>{{product.promo}}</td>
+                <td>{{product.countInStock}}</td>
+                <td>
+                  <button>
+                    <i class="fa-solid fa-eye text-2xl text-blue-700"></i>
+                  </button>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <a class="" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <i class="fa-solid fa-ellipsis text-3xl text-blue-700"></i>
+                    </a>
+                    <ul class="dropdown-menu text-center">
+                      <li>
+                        <a class="dropdown-item hover:text-yellow-500" (click)="updateProduct(product._id)">Atualizar <i class="fa-solid fa-pen-to-square "></i></a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item hover:text-red-500" (confirm)="deleteProduct(product._id)" >Deletar <i class="fa-solid fa-trash-can "></i></a>
+                       
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          
+    </div>
+
+    <div class="flex justify-end bg-gray-200 p-4 rounded my-10">
+        <button class="bg-blue-900 text-white py-2 px-5 rounded ml-3 text-center" routerLink="formulario">Cadastrar novo produto</button>
+    </div>
+</div>
