@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Product, ProductsService } from '@util';
 
 @Component({
-  selector: 'app-product-item',
+  selector: 'products-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() product: any =  Product
+
+
+  constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
   }

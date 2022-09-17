@@ -2,16 +2,17 @@ import { ProductAdminFormComponent } from './admin/pages/product-form/product-fo
 import { ProductAdminListComponent } from './admin/pages/product-list/product-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductListComponent } from './store/pages/product-list/product-list.component';
+import { ProductStoreListComponent } from './store/pages/product-store-list/product-store-list.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: ProductListComponent
+    component: ProductStoreListComponent
   },
   {
-    path: 'todos-produtos',
-    component: ProductListComponent
+    path: 'todosprodutos',
+    component: ProductStoreListComponent
   },
   {
     path: 'produtos',

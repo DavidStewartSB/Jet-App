@@ -1,0 +1,8 @@
+<h3>Lista de Produtos</h3>
+<div class="row">
+    <div class="col" *ngFor="let product of products">
+        <div>
+            <products-item [product]="product"></products-item>
+        </div>
+    </div>
+</div>
