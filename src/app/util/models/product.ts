@@ -3,11 +3,12 @@ import { Category } from './category'
 export class Product {
   id?: string
   name?: string
+  price?: string
   description?: string
+  promo?: number
   image?: string
-  images?: string[]
-  price?: number
-  prome?: number
+  images?: []
   category?: Category
   countInStock?: number
+  status?: boolean
 }
