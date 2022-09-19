@@ -1,6 +1,15 @@
-<div class="bg-gray-300 text-center my-3" *ngIf="product">
-    <img [src]="product.image" alt="">
-    <h5>{{product.name}}</h5>
-    <span>Star</span>
-    <span>{{product.price | currency: "BRL"}}</span>
+<div class="card text-center my-3 h-25" *ngIf="product">
+    <img [routerLink]="'/listaprodutos/'+product._id" 
+    class="card-img-top cursor-pointer" src="https://img.ltwebstatic.com/images3_pi/2021/10/20/163470223621c23eef009367e5e715b1072eb883cd.webp" alt="">
+    <div class="card-body">
+    <h5 class="text-md font-bold">{{product.name}}</h5>
+    <p class="text-yellow-500"><i class="fa-solid fa-star"> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+    </i></p>
+    <p class="font-bold">
+        <span class="">{{product.promo | currency: "BRL"}}</span>
+        <s class="text-gray-500 px-2">{{product.price | currency: "BRL"}}</s> 
+    </p>    
+    </div>
+    
 </div> <!--Card-->

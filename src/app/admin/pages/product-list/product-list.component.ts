@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Category, Product, ProductsService, SweetAlertService } from '@util';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -10,6 +11,7 @@ import { Category, Product, ProductsService, SweetAlertService } from '@util';
 export class ProductAdminListComponent implements OnInit {
   products: any = []
   categories: Category[] = []
+  endsubs$: Subject<any> = new Subject();
   constructor(
     private router: Router,
     private productService: ProductsService,
@@ -19,6 +21,9 @@ export class ProductAdminListComponent implements OnInit {
   ngOnInit(): void {
     this._getProducts()
   }
+  ngOnDestroy(){
+    this.endsubs$.complete();
+  }
   deleteProduct(product: Product){
     this.productService.deleteProduct(product).subscribe({
       next: () => this.alertService.successSwal('Produto deletado', 'Sucesso'),
@@ -27,9 +32,9 @@ export class ProductAdminListComponent implements OnInit {
     })
   }
   _getProducts(){
-    this.productService.getProducts().subscribe(products => {
+    this.productService.getProducts().pipe(takeUntil(this.endsubs$)).subscribe(products => {
       this.products = products
-      console.log(products)
+      console.log(this.products)
     })
   }
   updateProduct(productId: string){

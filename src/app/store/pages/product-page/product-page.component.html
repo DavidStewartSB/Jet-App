@@ -1,0 +1,38 @@
+<main>
+<div class="container my-4 h-screen">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+        <div class="text-center mx-auto">
+            <img src="https://img.ltwebstatic.com/images3_pi/2021/10/20/163470223621c23eef009367e5e715b1072eb883cd.webp" class="img-fluid img-thumbnail" alt="...">
+        </div>
+
+        <div class="md:w-75 my-4 text-center md:text-start mx-2">
+            <h2 class="h2 font-bold">{{product.name}}</h2>
+
+            <div class="flex items-center justify-content-center md:justify-content-start">
+                <h3 class="h3 pr-3">{{product.promo | currency: "BRL"}}</h3> 
+                
+                <span><s>{{product.price | currency: "BRL"}}</s></span>
+            </div>
+
+            <div class="my-4 text-start">
+                <h5 class="h5 font-bold ">Detalhes:</h5>
+                <hr>
+                <p class=" my-2">
+                    {{product.description}}
+                </p>
+            </div>
+
+            <div class="flex">
+                <div class="number-input bg-gray-200 rounded-full">
+                    <button class="bg-white" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                    <input class="quantity" min="0" class="bg-gray-200" name="quantity" value="1" type="number">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus bg-white"></button>
+                </div>
+                <button class="bg-blue-400 uppercase rounded-full py-2 px-3 text-white">
+                    adicionar ao carrinho
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</main>

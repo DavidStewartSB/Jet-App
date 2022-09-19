@@ -1,3 +1,4 @@
+import { ProductPageComponent } from './store/pages/product-page/product-page.component';
 import { ProductAdminFormComponent } from './admin/pages/product-form/product-form.component';
 import { ProductAdminListComponent } from './admin/pages/product-list/product-list.component';
 import { NgModule } from '@angular/core';
@@ -11,8 +12,12 @@ const routes: Routes = [
     component: ProductStoreListComponent
   },
   {
-    path: 'todosprodutos',
+    path: 'listaprodutos',
     component: ProductStoreListComponent
+  },
+  {
+    path: 'listaprodutos/:productid',
+    component: ProductPageComponent
   },
   {
     path: 'produtos',

@@ -9,7 +9,7 @@ export class Product {
   promo?: number
   image?: string
   images?: []
-  category?: Category
+  category?: any =  Category
   countInStock?: number
   status?: boolean
 }
