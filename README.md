@@ -1,27 +1,53 @@
 # JetApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
+Pré-requisitos
+Para rodar o projeto, primeiro pré-requisito é ter o Node.js instalado (versão 14.x ou acima) e o seu gerenciador de pacote favorito na versão mais atual. Caso você ainda não tenha instalado o pacote @angular/cli, instale-o via npm ou yarn.
 
-## Development server
+Instalando com npm:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+npm i -g @angular/cli@^14
+Caso prefira instalar com o yarn:
 
-## Code scaffolding
+yarn global add @angular/cli@^14
+Passo 1 - Crie o seu primeiro projeto
+Caso você já tenha um projeto criado e deseje apenas incluir o Po, pule esta etapa e vá para o Passo 1.1.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+O Angular CLI se encarrega de construir toda estrutura inicial do projeto. Para isso, execute o seguinte comando:
 
-## Build
+ng new my-po-project --skipInstall
+O parâmetro --skip-install permite criar o projeto, contudo, não instalará as dependências automaticamente.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Passo 1.1 - Instalando o projeto
 
-## Running unit tests
+Clone este projeto localmente para sua máquina
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Instalando com npm:
 
-## Running end-to-end tests
+npm install
+Caso utilizar a versão 7 do npm pode ocorrer erro de versão das dependências, neste caso utilize npm install --legacy-peer-deps.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Caso prefira instalar com o yarn:
 
-## Further help
+yarn install
+Passo 2 - Instale o servidor
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+acesse este repositório: https://github.com/DavidStewartSB/jet-api
+
+Clone o projeto para sua máquina localmente e execute os comandos: 
+
+npm install
+
+ou yarn add -- yarn build
+
+
+Passo 3 - Rode o seu projeto
+Agora basta executar mais um comando para subir a aplicação e ver o seu projeto rodando no browser ;).
+
+ng serve
+Abra o browser e acesse a url http://localhost:4200. Pronto!
+
+E agora?
+Agora é só abrir seu editor e verificar o código
+
+
+A partir dai o seu projeto está preparado ser utilizado
