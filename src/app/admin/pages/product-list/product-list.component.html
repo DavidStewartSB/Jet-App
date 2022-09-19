@@ -37,7 +37,7 @@
                     </a>
                     <ul class="dropdown-menu text-center">
                       <li>
-                        <a class="dropdown-item hover:text-yellow-500" (click)="updateProduct(product.id)">Atualizar <i class="fa-solid fa-pen-to-square "></i></a>
+                        <a class="dropdown-item hover:text-yellow-500" (click)="updateProduct(product._id)">Atualizar <i class="fa-solid fa-pen-to-square "></i></a>
                       </li>
                       <li>
                         <a [swal]="deleteSwal" class="dropdown-item hover:text-red-500" (confirm)="deleteProduct(product.id)" >Deletar <i class="fa-solid fa-trash-can "></i></a>
@@ -49,7 +49,7 @@
                           icon="warning"
                           [showCancelButton]="true"
                           [focusCancel]="true"
-                          (confirm)="deleteProduct(product.id)">
+                          (confirm)="deleteProduct(product._id)">
                           </swal>
                     </ul>
                   </div>

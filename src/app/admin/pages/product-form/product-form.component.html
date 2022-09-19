@@ -12,6 +12,7 @@
                 <div class="col-md-6">
                   <label for="inputEmail4" class="form-label">Nome do Produto</label>
                   <input formControlName="name" type="text" class="form-control bg-gray-100" id="name" placeholder="Digite o nome do produto">
+                  <small *ngIf="productForm.name.invalid && isSubmitted" class="text-red-500">Insira o campo</small>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label" for="inputState">Categoria</label>
@@ -20,26 +21,30 @@
                     formControlName="category"
                     id="categoryInput" 
                     class="form-control">
-                    <option selected>Selecione a Categoria</option>
-                    <option *ngFor="let category of catagories" [value]="category._id" >{{category.name}}</option>
+                    <option selected *ngFor="let category of catagories" [value]="category._id" >{{category.name}}</option>
                     </select>
+                    <small *ngIf="productForm.category.invalid && isSubmitted" class="text-red-500">Insira o campo</small>
                 </div>
                 <div class="col-md-4">
                   <label for="inputPassword4" class="form-label">Estoque</label>
                   <input formControlName="countInStock" type="number" class="form-control bg-gray-100" id="stock" placeholder="Quantidade">
+                  <small *ngIf="productForm.countInStock.invalid && isSubmitted" class="text-red-500">Insira o campo</small>
                 </div>
                 <div class="col-md-4">
                   <label for="inputAddress" class="form-label">Preço</label>
                   <input formControlName="price" type="number" class="form-control bg-gray-100" id="price" placeholder="Ex: 10.00">
+                  <small *ngIf="productForm.price.invalid && isSubmitted" class="text-red-500">Insira o campo</small>
                 </div>
                 <div class="col-md-4">
                   <label for="inputAddress2" class="form-label">Preço Promocional</label>
                   <input formControlName="promo" type="number" class="form-control bg-gray-100" id="promoPrice" placeholder="Ex: 5.99">
+                  <small *ngIf="productForm.promo.invalid && isSubmitted" class="text-red-500">Insira o campo</small>
                 </div>
 
                 <div class="col-12 ">
                   <label for="inputAddress2" class="form-label my-10">Descrição do produto</label>
                   <textarea class="bg-gray-100 border border-black w-full p-2" formControlName="description" placeholder="Digite as descrições" name="description" id="description" cols="30" rows="10"></textarea>
+                  <small *ngIf="productForm.description.invalid && isSubmitted" class="text-red-500">Insira o campo</small>
                 </div>
               </form>
         </div>
