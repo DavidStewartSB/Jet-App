@@ -17,6 +17,7 @@ export class ProductAdminFormComponent implements OnInit {
   imageDisplay: any;
   header = ''
   currentProductId: string =''
+  
 
   
   constructor(

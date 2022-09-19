@@ -11,6 +11,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class ProductAdminListComponent implements OnInit {
   products: any = []
   categories: Category[] = []
+  public isVisible = true;
   endsubs$: Subject<any> = new Subject();
   constructor(
     private router: Router,
@@ -20,6 +21,9 @@ export class ProductAdminListComponent implements OnInit {
 
   ngOnInit(): void {
     this._getProducts()
+  }
+  changeIcon(){
+    this.isVisible = !this.isVisible
   }
   ngOnDestroy(){
     this.endsubs$.complete();

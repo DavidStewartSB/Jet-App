@@ -26,8 +26,9 @@
                 <td>{{product.promo | currency: 'BRL'}}</td>
                 <td>{{product.countInStock}}</td>
                 <td>
-                  <button>
-                    <i class="fa-solid fa-eye text-2xl text-blue-700"></i>
+                  <button (click)="changeIcon()">
+                    <i class="fa-solid text-2xl fa-eye text-blue-700" *ngIf="product.status"></i>
+                          <i class="fa-solid  text-2xl fa-eye-slash text-red-600" *ngIf="!product.status"></i>
                   </button>
                 </td>
                 <td>
@@ -37,7 +38,7 @@
                     </a>
                     <ul class="dropdown-menu text-center">
                       <li>
-                        <a class="dropdown-item hover:text-yellow-500" (click)="updateProduct(product._id)">Atualizar <i class="fa-solid fa-pen-to-square "></i></a>
+                        <a class="dropdown-item hover:text-yellow-500 cursor-pointer" (click)="updateProduct(product._id)">Atualizar <i class="fa-solid fa-pen-to-square "></i></a>
                       </li>
                       <li>
                         <a [swal]="deleteSwal" class="dropdown-item hover:text-red-500" (confirm)="deleteProduct(product.id)" >Deletar <i class="fa-solid fa-trash-can "></i></a>
